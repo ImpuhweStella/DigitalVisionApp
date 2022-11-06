@@ -2,14 +2,18 @@ import React, { useState } from 'react';
 import addnewproduct from './styles/addnewproduct.css';
 import Navbar from './Navbar';
 
-const AddNewProduct=({newProd,SetNewProd})=> {
-  const[exiPro,SetExiPro] =useState({title:"",description:"",category:"",thumbnail:""});
+const AddNewProduct=(props)=> {
+
+ const [newPro,setNewPro]=useState({title:"",description:"",category:"",thumbnail:""});
+  const[exiPro,SetExiPro] =useState();
+
   const changePro=(e)=>{
-    SetExiPro({...exiPro,[e.target.name]:e.target.value})
+    setNewPro({...newPro,[e.target.name]:e.target.value})
   }
+
   const addPro = () => {
-    SetNewProd([...newProd, exiPro])
-    SetExiPro({title:"",description:"",category:"",thumbnail:""});
+   props.setData([...props.data, newPro])
+    setNewPro({title:"",description:"",category:"",thumbnail:""});
     }
     
   return (
@@ -23,28 +27,31 @@ const AddNewProduct=({newProd,SetNewProd})=> {
         <label>Title:</label>
         </div>
         <div>
-        <input type="text" name="title" value={exiPro.title} onChange={changePro} placeholder="title"/><br></br>
+        <input type="text" name="title" value={newPro.title} onChange={changePro} placeholder="title"/><br></br>
         </div>
         <div>
         <label className="form-label">Description:</label>
         </div>
         <div>
-        <input type="text" name="description" value={exiPro.description} onChange={changePro} placeholder="description"/><br></br>
+        <input type="text" name="description" value={newPro.description} onChange={changePro} placeholder="description"/><br></br>
         </div>
         <div>
         <label className="form-label">category:</label>
         </div>
         <div>
-        <input type="text"  name="category" value={exiPro.category} onChange={changePro} placeholder="categoryyy"/><br></br>
+        <input type="text"  name="category" value={newPro.category} onChange={changePro} placeholder="categoryyy"/><br></br>
         </div>
         <div>
         <label className="form-label">Image:</label>
         </div>
         <div>
-        <input type="url" placeholder='//https://' name="thumbnail"  onChange={changePro}/><br></br>
+        <input type="url" placeholder='//https://' name="thumbnail" value={newPro.thumbnail}  onChange={changePro}/><br></br>
         </div>
-        <button className='form-button' onClick={addPro} >Add new product</button>
+        <button type="submit" className='form-button' onClick={addPro} >Add new product</button>
         </div>  
+
+        {JSON.stringify(newPro)}
+
 
     </div>
     </>

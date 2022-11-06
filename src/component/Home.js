@@ -3,11 +3,11 @@ import Navbar from './Navbar';
 import MyShop from './MyShop';
 
 
-const Home=()=> {
+const Home=(props)=> {
   return (
     <>
     <Navbar />
-    <MyShop />
+    <MyShop data = {props.data} />
 
     </>
   )

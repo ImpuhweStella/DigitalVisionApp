@@ -1,23 +1,18 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Card from './Card';
+import AddNewProduct from './AddNewProduct';
+import Navbar from './Navbar';
 
-const MyShop=()=> { 
+const MyShop=(props)=> { 
 
-  const[api,setApi]= useState([]);  
-  const fetchProducts = async() =>{
-    const response= await axios.get("https://dummyjson.com/products?limit=6");
-    setApi(response.data.products);
-    console.log(response);
-  }
-  if(api.length<1){
-    fetchProducts();
-  }
+ 
   return (
     <>
+    
     <div>
         {
-            api.map((item,index) => (
+          props.data.map((item,index) => (
                 <Card key={index} item={item} />
             ))
             
